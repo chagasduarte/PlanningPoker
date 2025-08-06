@@ -1,0 +1,11 @@
+<div class="container mt-5 text-center">
+  <h1>Planning Poker</h1>
+  <form (ngSubmit)="enterRoom()">
+    <input [(ngModel)]="name" name="name" required placeholder="Seu nome" class="form-control mb-2" />
+    <label>
+      <input type="checkbox" [(ngModel)]="isObserver" name="observer" />
+      Entrar como observador
+    </label>
+    <button class="btn btn-primary w-100 mt-3">Entrar</button>
+  </form>
+</div>

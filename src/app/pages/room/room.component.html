@@ -1,0 +1,45 @@
+<div class="poker-room">
+    <div class="user">
+        {{user.name}}
+    </div>
+  <div class="main-area">
+    <div class="users-left">
+        <div class="user-card" *ngFor="let user of leftUsers">
+            <div class="user-avatar">{{ user.card }}</div>
+            <div class="user-name">{{ user.name }}</div>
+        </div>
+    </div>
+
+    <div class="users-top">
+      <div class="user-card" *ngFor="let user of topUsers">
+        <div class="user-avatar" [class.voted]="user.card" [class.revailed]="this.revealed" >
+            <span>{{ user.card }}</span>
+        </div>
+        <div class="user-name">{{ user.name }}</div>
+      </div>
+    </div>
+
+    <div class="mesa">
+      <button (click)="revealCards()">Revelar Cartas</button>
+    </div>
+
+    <div class="users-right">
+      <div class="user-card" *ngFor="let user of bottomUsers">
+        <div class="user-avatar">{{ user.card }}</div>
+        <div class="user-name">{{ user.name }}</div>
+      </div>
+    </div>
+    
+    <div class="users-button">
+        <div class="user-card" *ngFor="let user of rightUsers">
+            <div class="user-avatar">{{ user.card }}</div>
+            <div class="user-name">{{ user.name }}</div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="vote-area">
+    <div class="vote-card" *ngFor="let cart of cards">
+        <button class="vote-avatar" (click)="vote(cart)" [class.selected]="selectedCard == cart">{{ cart }}</button>
+    </div>
+</div>

@@ -1,0 +1,140 @@
+.poker-room {
+  display: grid;
+  height: 90vh;
+  background-color: #7594a7;
+  place-items: center;
+  gap: 16px;
+}
+
+.main-area {
+  display: grid;
+  grid-template-areas: 
+  'users-left users-top users-right'
+  'users-left mesa users-right'
+  'users-left users-button users-right';
+  grid-template-columns: 50px 420px 50px;
+  grid-template-rows: 75px 210px 75px;
+  position: relative;
+  place-items: center;
+  gap: 12px;
+}
+
+.users-left {
+   grid-area: users-left;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   justify-content: center;
+}
+
+.users-top  {
+   grid-area: users-top;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 50px;
+}
+
+.mesa {
+  grid-area: mesa;
+  width: 400px;
+  height: 200px;
+  background-color: #3a5368;
+  border-radius: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.users-right {
+   grid-area:users-right;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   gap: 20px;
+}
+
+.users-button {
+   grid-area: users-button;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 20px;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  font-family: sans-serif;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 60px;
+  border: 2px solid #3fa9f5;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #3fa9f5;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+
+
+.mesa button {
+  background-color: #3fa9f5;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+.vote-area {
+    display: flex;
+    place-self: end;
+    background-color: #3a5368;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+}
+
+.vote-avatar {
+   width: 35px;
+   height: 50px;
+   border-radius: 8px;
+   background-color: #3a5368;
+   border: 2px solid #70a7d4;
+   color: #fff;
+}
+
+.voted {
+    background-color: #3fa9f5;
+}
+
+.voted span {
+    display: none;
+}
+
+.selected {
+    background-color: #53748f;
+    width: 37px;
+    height: 52px;
+}
+
+.revailed {
+    background-color: #3a5368;
+}
+
+.revailed span {
+    display: block;
+}
