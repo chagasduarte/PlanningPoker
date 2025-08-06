@@ -64,10 +64,10 @@ export class SocketService {
      return new Observable<void>((observer) => {
       const handler = () => observer.next();
 
-      this.socket.on('resetCard', handler);
+      this.socket.on('resetCards', handler);
 
       return () => {
-        this.socket.off('resetCard', handler);
+        this.socket.off('resetCards', handler);
       };
     });
   }

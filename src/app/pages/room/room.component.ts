@@ -60,7 +60,9 @@ export class RoomComponent implements OnInit {
   }
   listenToReset(){
     this.socketService.onReset().subscribe(() => {
+      this.selectedCard = null;
       this.revealed = false;
+      alert("zerado")
     })
   }
   vote(card: string) {
@@ -75,8 +77,6 @@ export class RoomComponent implements OnInit {
   }
 
   resetVotes() {
-    this.selectedCard = null;
-    this.revealed = false;
     this.socketService.reset();
   }
 
