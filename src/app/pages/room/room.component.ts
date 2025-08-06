@@ -62,7 +62,6 @@ export class RoomComponent implements OnInit {
     this.socketService.onReset().subscribe(() => {
       this.selectedCard = null;
       this.revealed = false;
-      alert("zerado")
     })
   }
   vote(card: string) {
