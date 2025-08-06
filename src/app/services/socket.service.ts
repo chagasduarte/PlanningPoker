@@ -49,18 +49,26 @@ export class SocketService {
   }
 
   onReveal(): Observable<void> {
-    return new Observable((observer) => {
-      this.socket.on('revealCards', () => {
-        observer.next();
-      });
+    return new Observable<void>((observer) => {
+      const handler = () => observer.next();
+
+      this.socket.on('revealCards', handler);
+
+      return () => {
+        this.socket.off('revealCards', handler);
+      };
     });
   }
 
   onReset(): Observable<void> {
-     return new Observable((observer) => {
-      this.socket.on('resetCard', () => {
-        observer.next();
-      });
+     return new Observable<void>((observer) => {
+      const handler = () => observer.next();
+
+      this.socket.on('resetCard', handler);
+
+      return () => {
+        this.socket.off('resetCard', handler);
+      };
     });
   }
 }
