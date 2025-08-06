@@ -5,7 +5,7 @@
   <div class="main-area">
     <div class="users-left">
         <div class="user-card" *ngFor="let user of leftUsers">
-            <div class="user-avatar" [class.voted]="user.card" [class.revailed]="revealed" >
+            <div class="user-avatar" [class.voted]="user.card" [class.revailed]="revealed" [class.observe]="user.role == 'observer'" >
                 <span>{{ user.card }}</span>
             </div>
             <div class="user-name">{{ user.name }}</div>
@@ -14,7 +14,7 @@
 
     <div class="users-top">
       <div class="user-card" *ngFor="let user of topUsers">
-        <div class="user-avatar" [class.voted]="user.card" [class.revailed]="revealed" >
+        <div class="user-avatar" [class.voted]="user.card" [class.revailed]="revealed" [class.observe]="user.role == 'observer'">
             <span>{{ user.card }}</span>
         </div>
         <div class="user-name">{{ user.name }}</div>
@@ -23,12 +23,12 @@
 
     <div class="mesa">
       <button class="btn btn-primary" (click)="revealCards()" *ngIf="!revealed" [disabled]="!allVoted">Revelar Cartas</button>
-      <button (click)="resetVotes()" *ngIf="revealed">Zerar Votação</button>
+      <button class="btn btn-zerar" (click)="resetVotes()" *ngIf="revealed">Zerar Votação</button>
     </div>
 
     <div class="users-right">
       <div class="user-card" *ngFor="let user of bottomUsers">
-        <div class="user-avatar" [class.voted]="user.card" [class.revailed]="this.revealed" >
+        <div class="user-avatar" [class.voted]="user.card" [class.revailed]="this.revealed" [class.observe]="user.role == 'observer'" >
             <span>{{ user.card }}</span>
         </div>        
         <div class="user-name">{{ user.name }}</div>
@@ -37,7 +37,7 @@
     
     <div class="users-button">
         <div class="user-card" *ngFor="let user of rightUsers">
-            <div class="user-avatar" [class.voted]="user.card" [class.revailed]="this.revealed" >
+            <div class="user-avatar" [class.voted]="user.card" [class.revailed]="this.revealed" [class.observe]="user.role == 'observer'">
                 <span>{{ user.card }}</span>
             </div>
             

@@ -48,7 +48,7 @@ export class RoomComponent implements OnInit {
   listenToUsers() {
     this.socketService.onUsersUpdate().subscribe((users) => {
       this.users = users;
-      this.distribuiUsers(users);
+      this.distribuiUsers();
       this.updateAllVotedStatus();
     });
   }
@@ -93,7 +93,7 @@ export class RoomComponent implements OnInit {
     return this.revealed ? (card || '') : '🂠'; // 🂠 = carta virada
   }
 
-  distribuiUsers(usuarios: User[]){
+  distribuiUsers(){
     this.topUsers = this.users.slice(0, 2);
     this.rightUsers = this.users.slice(2, 4);
     this.bottomUsers = this.users.slice(4, 6);

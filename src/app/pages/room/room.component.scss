@@ -126,3 +126,19 @@
 .revailed span {
     display: block;
 }
+
+.btn-zerar {
+    background-color: #6198c5;
+    color: #fff;
+}
+
+.observe {
+    background-color: #688cce; /* fundo base */
+    background-image: repeating-linear-gradient(
+    45deg,             /* ângulo da linha (45° = diagonal) */
+    #7ae9da,              /* cor da linha */
+    #25447c 1px,          /* espessura da linha */
+    transparent 2px,   /* espaçamento entre linhas */
+    transparent 5px   /* largura do padrão */
+  );
+}
