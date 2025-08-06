@@ -31,6 +31,9 @@ export class SocketService {
     this.socket.emit('reset');
   }
   
+  init(){
+    this.socket.emit('init');
+  }
   onUserLogged(): void {
     this.socket.on('userInfo', (user: User) => {
       if (typeof localStorage != 'undefined') {
@@ -69,6 +72,14 @@ export class SocketService {
       return () => {
         this.socket.off('resetCards', handler);
       };
+    });
+  }
+
+  onInit(): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      this.socket.on('init', (isRevailed: boolean) => {
+        observer.next(isRevailed);
+      })
     });
   }
 }

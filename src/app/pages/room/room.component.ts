@@ -34,6 +34,9 @@ export class RoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.socketService.onUserLogged();
+    this.socketService.onInit().subscribe(x => {
+        this.revealed = x;
+    })
     this.askUserInfo();
     this.listenToUsers();
     this.listenToReveal();
@@ -43,6 +46,7 @@ export class RoomComponent implements OnInit {
   askUserInfo() {
     this.updateUserFromStorage();
     this.socketService.join(this.user);
+    this.socketService.init();
   }
 
   listenToUsers() {
@@ -99,6 +103,7 @@ export class RoomComponent implements OnInit {
     this.bottomUsers = this.users.slice(4, 6);
     this.leftUsers = this.users.slice(6, 8);
   }
+
   updateUserFromStorage(){
      if (typeof localStorage != 'undefined') {
       const jsonuser = localStorage.getItem("poker-user");
