@@ -37,6 +37,7 @@ export class RoomComponent implements OnInit {
     this.askUserInfo();
     this.listenToUsers();
     this.listenToReveal();
+    this.listenToReset();
   }
 
   askUserInfo() {
@@ -57,7 +58,11 @@ export class RoomComponent implements OnInit {
       this.revealed = true;
     });
   }
-  
+  listenToReset(){
+    this.socketService.onReset().subscribe(() => {
+      this.revealed = false;
+    })
+  }
   vote(card: string) {
     this.updateUserFromStorage();
     this.selectedCard = card;

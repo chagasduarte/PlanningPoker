@@ -55,4 +55,12 @@ export class SocketService {
       });
     });
   }
+
+  onReset(): Observable<void> {
+     return new Observable((observer) => {
+      this.socket.on('resetCard', () => {
+        observer.next();
+      });
+    });
+  }
 }
