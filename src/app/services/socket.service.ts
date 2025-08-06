@@ -9,7 +9,7 @@ import { User } from '../models/user.model';
 export class SocketService {
 
   private socket: Socket;
-  private readonly SERVER_URL = 'https://planning-poker-api.vercel.app/';
+  private readonly SERVER_URL = 'https://planningpoker-api-pxer.onrender.com/';
 
   constructor() {
     this.socket = io(this.SERVER_URL);
