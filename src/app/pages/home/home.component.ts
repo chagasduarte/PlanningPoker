@@ -34,13 +34,16 @@ export class HomeComponent implements OnInit {
   }
 
   enterRoom() {
+    if (this.name == ""){
+      this.name = "Desmamado";
+    }
     if (typeof localStorage != 'undefined') {
       this.user = {
         id: "",
         name: this.name,
         role: this.selectedRole
       }
-
+      
       localStorage.setItem('poker-user', JSON.stringify(this.user));
     }
     this.router.navigate(['/room'] );
@@ -50,3 +53,5 @@ export class HomeComponent implements OnInit {
     this.selectedRole = role;
   }
 }
+
+
