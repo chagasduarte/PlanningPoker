@@ -80,7 +80,7 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
     this.socketService.onReveal().subscribe(() => {
       this.revealed = true;
       const primeira = this.users[0].card;
-      const todosIguais = this.users.every(user => user.card === primeira);
+      const todosIguais = this.users.every(user => user.card === primeira && user.role == 'voter');
 
       if(todosIguais){
         this.soltarConfetes()
