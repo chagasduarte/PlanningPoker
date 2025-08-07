@@ -1,11 +1,82 @@
-<div class="container mt-5 text-center">
-  <h1>Planning Poker</h1>
-  <form (ngSubmit)="enterRoom()">
-    <input [(ngModel)]="name" name="name" required placeholder="Seu nome" class="form-control mb-2" />
-    <label>
-      <input type="checkbox" [(ngModel)]="isObserver" name="observer" />
-      Entrar como observador
-    </label>
-    <button class="btn btn-primary w-100 mt-3">Entrar</button>
-  </form>
+<div class="home">
+  <div class="container d-flex flex-column pt-5 justify-content-center" >
+    <div class="d-flex justify-content-center align" id="title" >
+        <h1>Planning Poker</h1>
+        <img width="90" height="90" id="title-icon" src="https://images.vexels.com/media/users/3/331657/isolated/preview/7c5aee42777eadcc524c1adfa3d811a2-pair-of-aces-and-poker-chips.png?width=1040" />
+    </div>
+    
+    <form (ngSubmit)="enterRoom()" class="d-flex justify-content-center pt-5 flex-column" id="forms">
+      <div class="d-flex justify-content-center">
+        <input [(ngModel)]="name" name="name"  required placeholder="Seu nome" class="form-control mb-2 form-control-sm poker-input mb-3 align-self-end" />
+        <label class="form-check d-flex align-items-end justify-content-center">
+          <!-- role-selector.component.html -->
+          <div class="role-selector text-center mb-4">
+            <div class="row">
+              <div class="col-6">
+                <div class="role-card" 
+                    [ngClass]="{ 'selected': selectedRole === 'voter' }" 
+                    (click)="selectRole('voter')">
+                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="16" r="8" fill="#FFD700"/>
+                    <rect x="22" y="28" width="20" height="28" rx="4" fill="#0077FF"/>
+
+                    <!-- Grupo da carta animada -->
+                    <g>
+                      <g transform="translate(36, 20)">
+                        <g>
+                          <rect x="0" y="0" width="12" height="18" rx="2" fill="white" stroke="black" stroke-width="2">
+                            <animateTransform attributeName="transform"
+                              attributeType="XML"
+                              type="scale"
+                              values="1;1.2;1"
+                              dur="1.5s"
+                              repeatCount="indefinite"/>
+                          </rect>
+                          <text x="3" y="12" font-size="10" font-weight="bold" fill="black">
+                            <tspan>
+                              <animate attributeName="text" values="P;M;P" dur="1.5s" repeatCount="indefinite"/>
+                            </tspan>
+                          </text>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                    <span>Vote</span>
+
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="role-card" 
+                    [ngClass]="{ 'selected': selectedRole === 'observer' }" 
+                    (click)="selectRole('observer')">
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <!-- Cabeça -->
+                      <circle cx="32" cy="16" r="8" fill="#FFD700"/>
+                      
+                      <!-- Corpo -->
+                      <rect x="22" y="28" width="20" height="28" rx="4" fill="#2B5252"/>
+                      
+                      <!-- Máscara -->
+                      <ellipse cx="32" cy="42" rx="10" ry="6" fill="white" stroke="black" stroke-width="2"/>
+                      
+                      <!-- Olho com animação de piscada -->
+                      <circle cx="32" cy="42" r="3" fill="#0077FF">
+                        <animate 
+                          attributeName="r" 
+                          values="3;0;3" 
+                          dur="1s" 
+                          repeatCount="indefinite" />
+                      </circle>
+                    </svg>
+                    <span>Look</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </label>
+      </div>
+      <button class="btn btn-primary btn-sm w-100 mt-3">Entrar</button>
+    </form>
+  </div>
 </div>

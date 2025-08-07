@@ -6,6 +6,16 @@
   gap: 16px;
 }
 
+.user {
+  display: flex;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  justify-content: space-between;
+  width: 30%;
+
+}
+
 .main-area {
   display: grid;
   grid-template-areas: 
@@ -68,6 +78,30 @@
   align-items: center;
   color: #fff;
   font-family: sans-serif;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.user-card:hover .attack-options,
+.attack-options:hover {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.attack-options {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: #fff;
+  border-radius: 5px;
+  padding: 4px 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none; /* importante */
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 5;
 }
 
 .user-avatar {
@@ -141,4 +175,66 @@
     transparent 2px,   /* espaçamento entre linhas */
     transparent 5px   /* largura do padrão */
   );
+}
+
+
+.flying-item {
+  position: absolute;
+  top: 50vh;
+  left: 0;
+  font-size: 24px;
+  animation: flyToTarget 1s forwards;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.ball {
+  position: absolute;
+  background-image: url('https://e7.pngegg.com/pngimages/34/603/png-clipart-crumpled-paper-ball-crumpled-paper.png');
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+
+@keyframes impact {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.3);
+  }
+  60% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ball.impact {
+  animation: impact 0.3s ease-in-out;
+}
+
+
+.game-area {
+  position: relative;
+  overflow: hidden;
+}
+
+.player {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid white;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.player.active {
+  box-shadow: 0 0 0 5px yellow;
 }

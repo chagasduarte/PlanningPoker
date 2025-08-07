@@ -1,50 +1,65 @@
-<div class="poker-room">
+<div  #gameArea class="poker-room game-area">
     <div class="user">
-        {{user.name}}
+        <span>{{user.name}}</span>
+        <button class="btn btn-success btn-sm" (click)="logout()">logout</button>
     </div>
-  <div class="main-area">
-    <div class="users-left">
-        <div class="user-card" *ngFor="let user of leftUsers">
-            <div class="user-avatar" [class.voted]="user.card" [class.revailed]="revealed" [class.observe]="user.role == 'observer'" >
+    <div class="main-area" >
+        <div class="users-left">
+            <div class="user-card" *ngFor="let user of leftUsers" [id]="'user-' + user.id" #button (click)="callThrowPaperBall(button)" >
+
+                <div class="user-avatar" [class.voted]="user.card" [class.revailed]="revealed" [class.observe]="user.role == 'observer'" >
+                    <span>{{ user.card }}</span>
+                </div>
+                <div class="user-name">{{ user.name }}</div>
+            </div>
+        </div>
+
+        <div class="users-top">
+        <div class="user-card" *ngFor="let user of topUsers" [id]="'user-' + user.id" #button (click)="callThrowPaperBall(button)">
+
+            <div class="user-avatar" [class.voted]="user.card" [class.revailed]="revealed" [class.observe]="user.role == 'observer'">
                 <span>{{ user.card }}</span>
             </div>
             <div class="user-name">{{ user.name }}</div>
         </div>
-    </div>
-
-    <div class="users-top">
-      <div class="user-card" *ngFor="let user of topUsers">
-        <div class="user-avatar" [class.voted]="user.card" [class.revailed]="revealed" [class.observe]="user.role == 'observer'">
-            <span>{{ user.card }}</span>
         </div>
-        <div class="user-name">{{ user.name }}</div>
-      </div>
-    </div>
 
-    <div class="mesa">
-      <button class="btn btn-primary" (click)="revealCards()" *ngIf="!revealed" [disabled]="!allVoted">Revelar Cartas</button>
-      <button class="btn btn-zerar" (click)="resetVotes()" *ngIf="revealed">Zerar Votação</button>
-    </div>
+        <div class="mesa">
+        <button class="btn btn-primary" (click)="revealCards()" *ngIf="!revealed" [disabled]="!allVoted">Revelar Cartas</button>
+        <button class="btn btn-zerar" (click)="resetVotes()" *ngIf="revealed">Zerar Votação</button>
+        </div>
 
-    <div class="users-right">
-      <div class="user-card" *ngFor="let user of bottomUsers">
-        <div class="user-avatar" [class.voted]="user.card" [class.revailed]="this.revealed" [class.observe]="user.role == 'observer'" >
-            <span>{{ user.card }}</span>
-        </div>        
-        <div class="user-name">{{ user.name }}</div>
-      </div>
-    </div>
-    
-    <div class="users-button">
-        <div class="user-card" *ngFor="let user of rightUsers">
-            <div class="user-avatar" [class.voted]="user.card" [class.revailed]="this.revealed" [class.observe]="user.role == 'observer'">
+        <div class="users-right">
+        <div class="user-card" *ngFor="let user of bottomUsers" #button (click)="callThrowPaperBall(button)">
+            <div class="user-avatar" [class.voted]="user.card" [class.revailed]="this.revealed" [class.observe]="user.role == 'observer'" >
                 <span>{{ user.card }}</span>
-            </div>
-            
+            </div>        
             <div class="user-name">{{ user.name }}</div>
         </div>
+        </div>
+        
+        <div class="users-button">
+            <div class="user-card" *ngFor="let user of rightUsers" #button (click)="callThrowPaperBall(button)">
+                <div class="user-avatar" [class.voted]="user.card" [class.revailed]="this.revealed" [class.observe]="user.role == 'observer'">
+                    <span>{{ user.card }}</span>
+                </div>
+                
+                <div class="user-name">{{ user.name }}</div>
+            </div>
+        </div>
     </div>
-</div>
+    <!-- Bolinhas -->
+ <div
+  *ngFor="let ball of paperBalls"
+  [id]="'ball-' + ball.fromPlayer"
+  class="ball"
+  [ngStyle]="{
+    left: ball.x + 'px',
+    top: ball.y + 'px',
+    display: ball.isVisible ? 'block' : 'none'
+  }"
+></div>
+
 </div>
 <div class="vote-area">
     <div class="vote-card" *ngFor="let cart of cards">

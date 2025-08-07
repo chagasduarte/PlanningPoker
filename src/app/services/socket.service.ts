@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { User } from '../models/user.model';
+import { PaperBall } from '../models/ball.model';
+import { Coordenadas } from '../models/coord.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +36,11 @@ export class SocketService {
   init(){
     this.socket.emit('init');
   }
+
+  throwBall(ball: Coordenadas){
+    this.socket.emit('throwBall', ball);
+  }
+  
   onUserLogged(): void {
     this.socket.on('userInfo', (user: User) => {
       if (typeof localStorage != 'undefined') {
@@ -79,6 +86,14 @@ export class SocketService {
     return new Observable<boolean>((observer) => {
       this.socket.on('init', (isRevailed: boolean) => {
         observer.next(isRevailed);
+      })
+    });
+  }
+
+  onThrowBall(): Observable<Coordenadas> {
+    return new Observable<Coordenadas>((observe) => {
+      this.socket.on('throwBalls', (ball: Coordenadas) => {
+        observe.next(ball);
       })
     });
   }
