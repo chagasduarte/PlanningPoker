@@ -7,7 +7,7 @@
     
     <form (ngSubmit)="enterRoom()" class="d-flex justify-content-center pt-5 flex-column" id="forms">
       <div class="d-flex justify-content-center">
-        <input [(ngModel)]="name" name="name"  required placeholder="Seu nome" class="form-control mb-2 form-control-sm poker-input mb-3 align-self-end" />
+        <input [(ngModel)]="name" name="name" placeholder="Seu nome" class="form-control mb-2 form-control-sm poker-input mb-3 align-self-end" />
         <label class="form-check d-flex align-items-end justify-content-center">
           <!-- role-selector.component.html -->
           <div class="role-selector text-center mb-4">
@@ -56,16 +56,24 @@
                       <!-- Corpo -->
                       <rect x="22" y="28" width="20" height="28" rx="4" fill="#2B5252"/>
                       
-                      <!-- Máscara -->
-                      <ellipse cx="32" cy="42" rx="10" ry="6" fill="white" stroke="black" stroke-width="2"/>
+                      <!-- Olho branco -->
+                      <ellipse cx="32" cy="42" rx="10" ry="6" fill="white" stroke="black" stroke-width="2">
+                        <animate 
+                          attributeName="ry" 
+                          values="6;1;6" 
+                          dur="2s" 
+                          begin="0s;3s;6.5s;10s" 
+                          repeatCount="indefinite"/>
+                      </ellipse>
                       
-                      <!-- Olho com animação de piscada -->
+                      <!-- Íris -->
                       <circle cx="32" cy="42" r="3" fill="#0077FF">
                         <animate 
                           attributeName="r" 
-                          values="3;0;3" 
-                          dur="1s" 
-                          repeatCount="indefinite" />
+                          values="3;0.5;3" 
+                          dur="2s" 
+                          begin="0s;3s;6.5s;10s" 
+                          repeatCount="indefinite"/>
                       </circle>
                     </svg>
                     <span>Look</span>
