@@ -79,6 +79,12 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
   listenToReveal() {
     this.socketService.onReveal().subscribe(() => {
       this.revealed = true;
+      const primeira = this.users[0].card;
+      const todosIguais = this.users.every(user => user.card === primeira);
+
+      if(todosIguais){
+        this.soltarConfetes()
+      }
     });
   }
   listenToReset(){
@@ -250,6 +256,22 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
         el.style.transform = `translate(-50%, -50%) scale(1)`;
       }
     }, 50);
+  }
+
+  soltarConfetes() {
+    
+    // Aqui um exemplo simples com uma lib de confetes
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js";
+    script.onload = () => {
+      confetti({
+          particleCount: 300,
+          spread: 180,  // Dispersão maior
+          origin: { x: 0.5, y: 0.5 }, // Parte do centro da tela
+          colors: ['#ff0', '#0f0', '#0ff']
+        });
+    };
+    document.body.appendChild(script);
   }
 
 }
