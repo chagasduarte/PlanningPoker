@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     if (typeof localStorage != 'undefined') {
       const jsonuser = localStorage.getItem("poker-user");
       if(jsonuser){
-        this.router.navigate(['/room']);
+        window.location.href = '/room'
       }
     }
   }
