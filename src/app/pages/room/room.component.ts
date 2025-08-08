@@ -79,9 +79,13 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
   listenToReveal() {
     this.socketService.onReveal().subscribe(() => {
       this.revealed = true;
-      const primeira = this.users[0].card;
-      const todosIguais = this.users.every(user => user.card === primeira && user.role == 'voter');
-
+      var primeira = "";
+      this.users.forEach(x => {
+        if(x.role == "voter"){
+          primeira = x.card || "";
+        }
+      })
+      const todosIguais = this.users.every(user => (user.card == primeira && user.role == 'voter') || (user.role == 'observer'));
       if(todosIguais){
         this.soltarConfetes()
       }
@@ -134,7 +138,6 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
     this.rightUsers = this.users.slice(2,4);
     this.bottomUsers = this.users.slice(4,6);
     this.leftUsers = this.users.slice(6,8);
-    console.log(this.users)
   }
 
   updateUserFromStorage(){
