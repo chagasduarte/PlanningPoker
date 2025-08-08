@@ -131,9 +131,9 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
 
   distribuiUsers(){
     this.topUsers = this.users.slice(0, 2);
-    this.rightUsers = this.users.slice(3,4);
-    this.bottomUsers = this.users.slice(5,6);
-    this.leftUsers = this.users.slice(7,8);
+    this.rightUsers = this.users.slice(2,4);
+    this.bottomUsers = this.users.slice(4,6);
+    this.leftUsers = this.users.slice(6,8);
   }
 
   updateUserFromStorage(){
