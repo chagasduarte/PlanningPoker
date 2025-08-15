@@ -134,10 +134,10 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   distribuiUsers(){
-    this.topUsers = this.users.slice(0, 2);
-    this.rightUsers = this.users.slice(2,4);
-    this.bottomUsers = this.users.slice(4,6);
-    this.leftUsers = this.users.slice(6,8);
+    this.topUsers = this.users.slice(0, 3);
+    this.rightUsers = this.users.slice(3,5);
+    this.bottomUsers = this.users.slice(5,8);
+    this.leftUsers = this.users.slice(8,10);
   }
 
   updateUserFromStorage(){
@@ -190,6 +190,7 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
       x: ((rect.left + rect.width / 2) / pageWidth) * 100,
       y: ((rect.top) / pageHeight) * 100
     }
+    debugger;
     this.socketService.throwBall(coord);
   }
 
